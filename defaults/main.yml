@@ -1,0 +1,8 @@
+---
+vmguest_state: poweredon
+vmguest_disk_size: 20
+vmguest_memory: 2048
+vmguest_num_cpu: 1
+vmguest_vlan: SERVERS
+vmguest_template: centos7
+vmguest_wait_for_ip_address: no

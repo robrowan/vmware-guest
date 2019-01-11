@@ -66,4 +66,3 @@
     port=22
     delay=3
   connection: local
-  when: template is not search("windows")

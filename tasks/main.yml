@@ -9,10 +9,7 @@
     name: "{{ inventory_hostname|lower }}"
     name_match: last
     state: "{{ vmguest_state }}"
-    disk:
-    - size_gb: "{{ vmguest_disk_size }}"
-      type: thin
-      datastore: "{{ vmguest_datastore }}"
+    disk: "{{ vmguest_disks }}"
     hardware:
       memory_mb: "{{ vmguest_memory }}"
       num_cpus: "{{ vmguest_num_cpu }}"
@@ -26,39 +23,6 @@
       hostname: "{{ inventory_hostname|lower }}"
     wait_for_ip_address: "{{ vmguest_wait_for_ip_address }}"
   register: deploy
-  when: vmguest_disk2_size is undefined
-
-- name: Create VM (multiple disk)
-  vmware_guest:
-    hostname: "{{ vcenter_hostname }}"
-    validate_certs: no
-    datacenter: "{{ vcenter_datacenter }}"
-    cluster: "{{ vcenter_cluster }}"
-    folder: "{{ vcenter_folder }}"
-    name: "{{ inventory_hostname|lower }}"
-    name_match: last
-    state: "{{ vmguest_state }}"
-    disk:
-    - size_gb: "{{ vmguest_disk_size }}"
-      type: thin
-      datastore: "{{ vmguest_datastore }}"
-    - size_gb: "{{ vmguest_disk2_size }}"
-      type: thin
-      datastore: "{{ vmguest_datastore }}"
-    hardware:
-      memory_mb: "{{ vmguest_memory }}"
-      num_cpus: "{{ vmguest_num_cpu }}"
-      scsi: paravirtual
-    networks:
-    - name: "{{ vmguest_vlan }}"
-      type: dhcp
-      domain: ".lan"
-    template: "{{ vmguest_template }}"
-    customization:
-      hostname: "{{ inventory_hostname|lower }}"
-    wait_for_ip_address: "{{ vmguest_wait_for_ip_address }}"
-  register: deploy
-  when: vmguest_disk2_size is defined
 
 - name: Wait for server to restart
   wait_for:

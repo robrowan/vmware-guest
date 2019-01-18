@@ -6,3 +6,7 @@ vmguest_num_cpu: 1
 vmguest_vlan: SERVERS
 vmguest_template: centos7
 vmguest_wait_for_ip_address: no
+vmguest_disks:
+      - size_gb: "{{ vmguest_disk_size }}"
+        type: thin
+        datastore: "{{ vmguest_datastore }}"

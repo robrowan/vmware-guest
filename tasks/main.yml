@@ -14,10 +14,7 @@
       memory_mb: "{{ vmguest_memory }}"
       num_cpus: "{{ vmguest_num_cpu }}"
       scsi: paravirtual
-    networks:
-    - name: "{{ vmguest_vlan }}"
-      type: dhcp
-      domain: ".lan"
+    networks: "{{ vmguest_networks }}"
     template: "{{ vmguest_template }}"
     customization:
       hostname: "{{ inventory_hostname|lower }}"

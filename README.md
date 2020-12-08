@@ -65,7 +65,7 @@ vcenter_password: "password"
 ### Static IP address
 
 The default is to use DHCP. To set a static IP address per host, use a host_var such as:
-
+```
 vmguest_networks:
     - name: "VM Network"
       ip: "192.168.1.10"
@@ -73,11 +73,13 @@ vmguest_networks:
       gateway: "192.168.1.1"
       dns_servers:
        - "192.168.1.1"
+```
 
 ### Multiple disks
 
 Default is a single 20GB disk. Example of multiple disks:
 
+```
 vmguest_disks:
     - size_gb: 20
       type: thin
@@ -88,6 +90,7 @@ vmguest_disks:
     - size_gb: 2000
       type: thin
       datastore: nas01
+```
 
 ### Example playbook
 
